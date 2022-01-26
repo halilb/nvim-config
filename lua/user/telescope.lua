@@ -4,6 +4,11 @@ if not status_ok then
 end
 
 local actions = require "telescope.actions"
+local trouble = require("trouble.providers.telescope")
+local api = vim.api
+
+api.nvim_set_keymap("n", ",", "<cmd>Telescope find_files theme=get_dropdown<CR>", { noremap = true, silent = true })
+api.nvim_set_keymap("n", "ü", "<cmd>Telescope buffers theme=get_dropdown sort_lastused=true<CR>", { noremap = true, silent = true })
 
 telescope.setup {
   defaults = {
@@ -14,6 +19,8 @@ telescope.setup {
 
     mappings = {
       i = {
+        ["<c-t>"] = trouble.open_with_trouble,
+
         ["<C-n>"] = actions.cycle_history_next,
         ["<C-p>"] = actions.cycle_history_prev,
 
@@ -28,7 +35,6 @@ telescope.setup {
         ["<CR>"] = actions.select_default,
         ["<C-x>"] = actions.select_horizontal,
         ["<C-v>"] = actions.select_vertical,
-        ["<C-t>"] = actions.select_tab,
 
         ["<C-u>"] = actions.preview_scrolling_up,
         ["<C-d>"] = actions.preview_scrolling_down,
@@ -45,11 +51,12 @@ telescope.setup {
       },
 
       n = {
-        ["<esc>"] = actions.close,
+        ["<c-t>"] = trouble.open_with_trouble,
+
+        ["<C-c>"] = actions.close,
         ["<CR>"] = actions.select_default,
         ["<C-x>"] = actions.select_horizontal,
         ["<C-v>"] = actions.select_vertical,
-        ["<C-t>"] = actions.select_tab,
 
         ["<Tab>"] = actions.toggle_selection + actions.move_selection_worse,
         ["<S-Tab>"] = actions.toggle_selection + actions.move_selection_better,

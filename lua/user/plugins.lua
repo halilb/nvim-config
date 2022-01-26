@@ -48,18 +48,17 @@ return packer.startup(function(use)
   use "numToStr/Comment.nvim" -- Easily comment stuff
   use "kyazdani42/nvim-web-devicons"
   use "kyazdani42/nvim-tree.lua"
-  use "akinsho/bufferline.nvim"
-  use "moll/vim-bbye"
-  use "nvim-lualine/lualine.nvim"
-  use "lewis6991/impatient.nvim"
-  use "lukas-reineke/indent-blankline.nvim"
-  use "goolord/alpha-nvim"
+  use "akinsho/bufferline.nvim" -- tabs on top of the screen
+  use "moll/vim-bbye" -- better buffer deletion
+  use "nvim-lualine/lualine.nvim" -- status line
+  use "lewis6991/impatient.nvim" -- faster startup
+  use "lukas-reineke/indent-blankline.nvim" -- indentation guides
+  use "goolord/alpha-nvim" -- dashboard
   use "antoinemadec/FixCursorHold.nvim" -- This is needed to fix lsp doc highlight
-  use "folke/which-key.nvim"
+  use "folke/which-key.nvim" -- key helper popup when you hit Space
 
   -- Colorschemes
-  -- use "lunarvim/colorschemes" -- A bunch of colorschemes you can try out
-  use "lunarvim/darkplus.nvim"
+  use "morhetz/gruvbox"
 
   -- cmp plugins
   use "hrsh7th/nvim-cmp" -- The completion plugin
@@ -92,7 +91,14 @@ return packer.startup(function(use)
   -- Git
   use "lewis6991/gitsigns.nvim"
 
+  -- Use C-Arrow keys for tmux-vim navigation
   use 'christoomey/vim-tmux-navigator'
+
+  -- Use Ctrl-T to move telescope results to quickfix
+  use {
+    "folke/trouble.nvim",
+    requires = "kyazdani42/nvim-web-devicons",
+}
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins

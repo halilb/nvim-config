@@ -81,7 +81,7 @@ local opts = {
 local mappings = {
   ["a"] = { "<cmd>Alpha<cr>", "Alpha" },
   ["b"] = {
-    "<cmd>lua require('telescope.builtin').buffers(require('telescope.themes').get_dropdown{previewer = false})<cr>",
+    "<cmd>lua require('telescope.builtin').buffers(require('telescope.themes').get_dropdown{})<cr>",
     "Buffers",
   },
   ["e"] = { "<cmd>NvimTreeToggle<cr>", "Explorer" },
@@ -90,10 +90,20 @@ local mappings = {
   ["c"] = { "<cmd>Bdelete!<CR>", "Close Buffer" },
   ["h"] = { "<cmd>nohlsearch<CR>", "No Highlight" },
   ["f"] = {
-    "<cmd>lua require('telescope.builtin').find_files(require('telescope.themes').get_dropdown{previewer = false})<cr>",
+    "<cmd>lua require('telescope.builtin').find_files(require('telescope.themes').get_dropdown{})<cr>",
     "Find files",
   },
   ["F"] = { "<cmd>Telescope live_grep theme=ivy<cr>", "Find Text" },
+
+  ["1"] = { "<cmd>1 wincmd w<CR>", "Tab 1" },
+  ["2"] = { "<cmd>2 wincmd w<CR>", "Tab 2" },
+  ["3"] = { "<cmd>3 wincmd w<CR>", "Tab 3" },
+  ["4"] = { "<cmd>4 wincmd w<CR>", "Tab 4" },
+  ["5"] = { "<cmd>5 wincmd w<CR>", "Tab 5" },
+  ["6"] = { "<cmd>6 wincmd w<CR>", "Tab 6" },
+  ["7"] = { "<cmd>7 wincmd w<CR>", "Tab 7" },
+  ["8"] = { "<cmd>8 wincmd w<CR>", "Tab 8" },
+  ["9"] = { "<cmd>9 wincmd w<CR>", "Tab 9" },
 
   p = {
     name = "Packer",
