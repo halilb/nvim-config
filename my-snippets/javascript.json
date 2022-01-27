@@ -1,0 +1,10 @@
+{
+  "c": {
+    "prefix": "c",
+    "body": "console.log({${0}})"
+  },
+  "co": {
+    "prefix": "co",
+    "body": "console.log('${0}')"
+  }
+}
