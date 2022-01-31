@@ -6,5 +6,13 @@
   "co": {
     "prefix": "co",
     "body": "console.log('${0}')"
+  },
+  "sleep": {
+    "prefix": "sleep",
+    "body": [
+      "function sleep(ms = ${0:2000}) {",
+      "  return new Promise(resolve => setTimeout(resolve, ms))",
+      "}"
+    ]
   }
 }
