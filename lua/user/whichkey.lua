@@ -117,6 +117,7 @@ local mappings = {
     name = "Trouble",
     d = { "<cmd>Trouble document_diagnostics<cr>", "Document" },
     w = { "<cmd>Trouble workspace_diagnostics<cr>", "Workspace" },
+    t = { "<cmd>lua require('user.trouble').typescript_workspace_check()<CR>", "Typescript Workspace" },
   },
 
   g = {
