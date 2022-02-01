@@ -1,24 +1,23 @@
-local status_ok, telescope = pcall(require, "telescope")
-if not status_ok then
-  return
-end
+local M = {}
 
-local actions = require "telescope.actions"
-local trouble = require("trouble.providers.telescope")
-local api = vim.api
+function M.setup()
+  local status_ok, telescope = pcall(require, "telescope")
+  if not status_ok then
+    return
+  end
 
-api.nvim_set_keymap("n", ",", "<cmd>Telescope find_files theme=get_dropdown<CR>", { noremap = true, silent = true })
-api.nvim_set_keymap("n", "ü", "<cmd>Telescope buffers theme=get_dropdown sort_lastused=true<CR>", { noremap = true, silent = true })
+  local actions = require "telescope.actions"
+  local trouble = require("trouble.providers.telescope")
 
-telescope.setup {
-  defaults = {
+  telescope.setup {
+    defaults = {
 
-    prompt_prefix = " ",
-    selection_caret = " ",
-    path_display = { "smart" },
+      prompt_prefix = " ",
+      selection_caret = " ",
+      path_display = { "smart" },
 
-    mappings = {
-      i = {
+      mappings = {
+        i = {
         ["<c-t>"] = trouble.open_with_trouble,
 
         ["<C-n>"] = actions.cycle_history_next,
@@ -82,22 +81,57 @@ telescope.setup {
 
         ["?"] = actions.which_key,
       },
+      },
     },
-  },
-  pickers = {
-    -- Default configuration for builtin pickers goes here:
-    -- picker_name = {
-    --   picker_config_key = value,
-    --   ...
-    -- }
-    -- Now the picker_config_key will be applied every time you call this
-    -- builtin picker
-  },
-  extensions = {
-    -- Your extension configuration goes here:
-    -- extension_name = {
-    --   extension_config_key = value,
-    -- }
-    -- please take a look at the readme of the extension you want to configure
-  },
-}
+  }
+end
+
+function M.reload()
+-- Telescope will give us something like user/colors.lua,
+  -- so this function convert the selected entry to
+  -- the module name: user.colors
+  local function get_module_name(s)
+    local module_name;
+
+    module_name = s:gsub("%.lua", "")
+    module_name = module_name:gsub("%/", ".")
+    module_name = module_name:gsub("%.init", "")
+
+    return module_name
+  end
+
+  local prompt_title = "~ neovim modules ~"
+
+  -- sets the path to the lua folder
+  local path = "~/.config/nvim/lua"
+
+  local opts = {
+    prompt_title = prompt_title,
+    cwd = path,
+
+    attach_mappings = function(_, map)
+     -- Adds a new map to ctrl+r.
+      map("i", "<c-r>", function(_)
+        -- these two a very self-explanatory
+        local entry = require("telescope.actions.state").get_selected_entry()
+        local name = get_module_name(entry.value)
+
+        -- call the helper method to reload the module
+        -- and give some feedback
+        R(name)
+        P(name .. " RELOADED!!!")
+      end)
+
+      return true
+    end
+  }
+
+  -- call the builtin method to list files
+  require('telescope.builtin').find_files(opts)
+end
+
+local api = vim.api
+api.nvim_set_keymap("n", ",", "<cmd>Telescope find_files theme=get_dropdown<CR>", { noremap = true, silent = true })
+api.nvim_set_keymap("n", "ü", "<cmd>Telescope buffers theme=get_dropdown sort_lastused=true<CR>", { noremap = true, silent = true })
+
+return M
