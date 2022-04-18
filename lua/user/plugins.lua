@@ -101,6 +101,11 @@ return packer.startup(function(use)
 
   use "github/copilot.vim"
 
+  use { 'sindrets/diffview.nvim', requires = 'nvim-lua/plenary.nvim' }
+
+  -- Adds subvert: %Subvert/lesson{s}/module{s}/g
+  -- use "tpope/vim-abolish"
+
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
   if PACKER_BOOTSTRAP then

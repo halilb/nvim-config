@@ -15,8 +15,10 @@ M.typescript_workspace_check = function()
 
   for line in magiclines(errors) do
     local beg = string.find(line, "%(")
-    local path = string.sub(line, 0, beg - 1)
-    vim.api.nvim_command("e " .. path)
+    if beg then
+      local path = string.sub(line, 0, beg - 1)
+      vim.api.nvim_command("e " .. path)
+    end
   end
 
 	output:close()
