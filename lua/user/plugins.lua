@@ -38,6 +38,9 @@ packer.init {
   },
 }
 
+-- Pass a node 16 path to copilot since it doesn't support >18
+vim.g.copilot_node_command = "~/.fnm/node-versions/v16.13.0/installation/bin/node"
+
 -- Install your plugins here
 return packer.startup(function(use)
   -- My plugins here
