@@ -106,6 +106,10 @@ return packer.startup(function(use)
 
   use { 'sindrets/diffview.nvim', requires = 'nvim-lua/plenary.nvim' }
 
+  -- Adds a virtual text to the end of the block
+  -- that shows the block definition
+  use "haringsrob/nvim_context_vt"
+
   -- Adds subvert: %Subvert/lesson{s}/module{s}/g
   -- use "tpope/vim-abolish"
 
