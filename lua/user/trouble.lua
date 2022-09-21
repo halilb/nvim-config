@@ -30,4 +30,9 @@ M.pick = function()
   vim.api.nvim_command('e client/components/student-theme-picker/index.tsx')
 end
 
+-- Display LSP references in the Trouble window
+vim.keymap.set("n", "gr", "<cmd>TroubleToggle lsp_references<cr>",
+  {silent = true, noremap = true}
+)
+
 return M
