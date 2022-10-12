@@ -110,6 +110,9 @@ return packer.startup(function(use)
   -- that shows the block definition
   use "haringsrob/nvim_context_vt"
 
+  -- Motion plugin
+  use "ggandor/leap.nvim"
+
   -- Adds subvert: %Subvert/lesson{s}/module{s}/g
   -- use "tpope/vim-abolish"
 
