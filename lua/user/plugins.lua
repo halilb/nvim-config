@@ -111,7 +111,7 @@ return packer.startup(function(use)
   use "haringsrob/nvim_context_vt"
 
   -- Motion plugin
-  use "ggandor/leap.nvim"
+  use { 'ggandor/flit.nvim', requires = {{'ggandor/leap.nvim'}, {'tpope/vim-repeat', opt = true}} }
 
   -- Adds subvert: %Subvert/lesson{s}/module{s}/g
   -- use "tpope/vim-abolish"
