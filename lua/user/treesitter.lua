@@ -5,6 +5,7 @@ end
 
 configs.setup {
   sync_install = false, -- install languages synchronously (only applied to `ensure_installed`)
+  ensure_installed = { "c", "lua", "vim", "vimdoc" },
   ignore_install = { "" }, -- List of parsers to ignore installing
   autopairs = {
     enable = true,
@@ -15,8 +16,4 @@ configs.setup {
     additional_vim_regex_highlighting = true,
   },
   indent = { enable = true, disable = { "yaml" } },
-  context_commentstring = {
-    enable = true,
-    enable_autocmd = false,
-  },
 }

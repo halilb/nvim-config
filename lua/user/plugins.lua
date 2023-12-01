@@ -64,7 +64,11 @@ return packer.startup(function(use)
   use "moll/vim-bbye" -- better buffer deletion
   use "nvim-lualine/lualine.nvim" -- status line
   use "lewis6991/impatient.nvim" -- faster startup
-  use "lukas-reineke/indent-blankline.nvim" -- indentation guides
+  -- indentation guides
+  use {
+    "lukas-reineke/indent-blankline.nvim",
+    tag = "v2.20.8"
+  }
   use "goolord/alpha-nvim" -- dashboard
   use "antoinemadec/FixCursorHold.nvim" -- This is needed to fix lsp doc highlight
   use "folke/which-key.nvim" -- key helper popup when you hit Space
@@ -85,7 +89,6 @@ return packer.startup(function(use)
 
   -- LSP
   use "neovim/nvim-lspconfig" -- enable LSP
-  use "williamboman/nvim-lsp-installer" -- simple to use language server installer
   use "tamago324/nlsp-settings.nvim" -- language server settings defined in json for
   use "jose-elias-alvarez/null-ls.nvim" -- for formatters and linters
 
@@ -120,7 +123,7 @@ return packer.startup(function(use)
   use "haringsrob/nvim_context_vt"
 
   -- Motion plugin
-  use { 'ggandor/flit.nvim', requires = {{'ggandor/leap.nvim'}, {'tpope/vim-repeat', opt = true}} }
+  use { 'ggandor/leap.nvim', requires = 'tpope/vim-repeat' }
 
   -- Adds subvert: %Subvert/lesson{s}/module{s}/g
   -- use "tpope/vim-abolish"
