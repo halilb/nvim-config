@@ -11,9 +11,22 @@ local diagnostics = null_ls.builtins.diagnostics
 null_ls.setup({
 	debug = false,
 	sources = {
-		formatting.prettier.with({ extra_args = { "--no-semi", "--single-quote", "--jsx-single-quote" } }),
+		formatting.prettier.with({ extra_args = {} }),
 		formatting.black.with({ extra_args = { "--fast" } }),
 		formatting.stylua,
     -- diagnostics.flake8
 	},
+
+  -- you can reuse a shared lspconfig on_attach callback here
+  on_attach = function(client)
+
+    if client.server_capabilities.documentFormattingProvider then
+        vim.cmd([[
+        augroup LspFormatting
+            autocmd! * <buffer>
+            autocmd BufWritePre <buffer> lua vim.lsp.buf.format()
+        augroup END
+        ]])
+    end
+  end,
 })
