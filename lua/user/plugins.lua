@@ -38,9 +38,6 @@ packer.init({
 	},
 })
 
--- Pass a node 16 path to copilot since it doesn't support >18
-vim.g.copilot_node_command = "~/.fnm/node-versions/v16.17.1/installation/bin/node"
-
 -- Install your plugins here
 return packer.startup(function(use)
 	-- My plugins here
@@ -80,7 +77,7 @@ return packer.startup(function(use)
 	use("folke/which-key.nvim") -- key helper popup when you hit Space
 
 	-- Colorschemes
-	use("morhetz/gruvbox")
+	use({ "ellisonleao/gruvbox.nvim" })
 
 	-- cmp plugins
 	use("hrsh7th/nvim-cmp") -- The completion plugin
